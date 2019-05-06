@@ -23,8 +23,10 @@ def get_item_info(v):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--tag', default='python')
     parser.add_argument('--deleted', action='store_true')
     args = parser.parse_args()
+    tag = args.tag
     deleted = args.deleted
 
     if 'POCKET_CONSUMER_KEY' not in os.environ or 'POCKET_ACCESS_TOKEN' not in os.environ:
@@ -38,7 +40,7 @@ def main():
     res = p.retrieve(
         offset=0,
         count=100,
-        tag="python",
+        tag=tag,
     )
 
     li = res['list']
