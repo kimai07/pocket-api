@@ -27,9 +27,13 @@ def main():
     args = parser.parse_args()
     deleted = args.deleted
 
+    if 'POCKET_CONSUMER_KEY' not in os.environ or 'POCKET_ACCESS_TOKEN' not in os.environ:
+        print("[ERR] no set POCKET_CONSUMER_KEY or POCKET_ACCESS_TOKEN environment variables.")
+        exit()
+
     p = Pocket(
-     consumer_key=os.environ["POCKET_CONSUMER_KEY"],
-     access_token=os.environ["POCKET_ACCESS_TOKEN"],
+     consumer_key=os.environ['POCKET_CONSUMER_KEY'],
+     access_token=os.environ['POCKET_ACCESS_TOKEN'],
     )
     res = p.retrieve(
         offset=0,
