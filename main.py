@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import settings
-from pocket import Pocket, PocketException
+from pocket import Pocket
 import argparse
 import os
 import re
@@ -30,20 +29,21 @@ def main():
     deleted = args.deleted
 
     if 'POCKET_CONSUMER_KEY' not in os.environ or 'POCKET_ACCESS_TOKEN' not in os.environ:
-        print("[ERR] no set POCKET_CONSUMER_KEY or POCKET_ACCESS_TOKEN environment variables.")
+        print(
+            "[ERR] no set POCKET_CONSUMER_KEY or POCKET_ACCESS_TOKEN environment variables.")
         exit()
 
     p = Pocket(
-     consumer_key=os.environ['POCKET_CONSUMER_KEY'],
-     access_token=os.environ['POCKET_ACCESS_TOKEN'],
+        consumer_key=os.environ['POCKET_CONSUMER_KEY'],
+        access_token=os.environ['POCKET_ACCESS_TOKEN'],
     )
-    res = p.retrieve(
+    res = p.get(
         offset=0,
-        count=200,
+        count=500,
         tag=tag,
     )
 
-    li = res['list']
+    li = res[0]['list']
     for k in li:
         v = li[k]
         item_id, title, url = get_item_info(v)
