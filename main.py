@@ -51,7 +51,7 @@ def main():
             p.delete(item_id)
             print("deleted [%s](%s)" % (title, url))
         else:
-            print("- [%s](%s)" % (title, url))
+            print("* [%s](%s)" % (title, url))
 
     if deleted:  # 削除コミット
         p.commit()
