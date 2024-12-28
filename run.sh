@@ -13,5 +13,8 @@ for tag in ${TAGS[@]}; do
 
     poetry run python main.py --tag=$tag >~/pocket/$tag.md
 
+    # poetry run python main.py --tag=$tag
+    # poetry run python main.py --search=$tag
+
     sleep 1
 done
